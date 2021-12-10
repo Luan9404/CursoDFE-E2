@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import BookCards from "./components/BookCards";
+import { api } from "./utils/api";
+export default class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      searchKey: null,
+      books: []
+    }
+    this.search = this.search.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+  async search(){
+    const {data} = await api.get(this.state.searchKey)
+    this.setState({ books: data.hits})
+  }
+  
+  handleInputChange({target}){
+    this.setState({searchKey: target.value})
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  render(){
+    const { books } = this.state
+    return(
+      <main>
+        <h1>Book List</h1>
+        <input type="text" onChange={this.handleInputChange}/>
+        <button onClick={this.search}>Pesquisar</button>
+        <BookCards books={books} />
+      </main>
+    )
+  }
 }
-
-export default App;
