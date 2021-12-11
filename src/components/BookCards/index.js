@@ -1,13 +1,13 @@
 import React from "react";
 import Card from "../Card";
-
+import styles from './styles.module.scss'
 export default class BookCards extends React.Component{
  
   render(){
     const { books } = this.props;
 
     return(
-      <div>
+      <div className={styles.booksContainer}>
         {books.map((book, key) => {
           return (
             <Card

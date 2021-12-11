@@ -1,0 +1,23 @@
+.cardBody{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid black;
+  background-color: rgba(55, 10, 130, 0.932);
+  border-radius: 10px;
+  width: 20rem;
+  height: 12rem;
+  padding: 5px 10px;
+  color: #fafafa;
+  transition: transform 100ms ease-in-out;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3 );
+
+  &:hover{
+    transform: scale(1.05);
+  }
+
+  a{
+    text-decoration: none;
+    color: #fafafa;
+  }
+}
